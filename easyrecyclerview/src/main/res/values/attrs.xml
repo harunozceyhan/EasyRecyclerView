@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This goes into res/values/prefs_attrs.xml -->
+<resources>
+
+    <declare-styleable name="EasyRecyclerView">
+        <attr name="row_layout" format="reference" />
+        <attr name="items" format="reference" />
+    </declare-styleable>
+
+</resources>
