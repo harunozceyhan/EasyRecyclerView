@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        card_view:cardCornerRadius="0dp"
+        card_view:cardElevation="0dp"
+        card_view:cardPreventCornerOverlap="false"
+        card_view:cardBackgroundColor="#dddddd" >
+
+    <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginTop="1dp"
+          android:layout_marginBottom="1dp"
+          android:layout_marginLeft="2dp"
+          android:layout_marginRight="2dp"
+          android:orientation="horizontal"
+          android:background="#dddddd">
+
+        <ImageView
+                android:id="@+id/imageview_template"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="1dp"
+                android:scaleType="fitCenter"
+                android:onClick="onItemClick"
+                android:background="#ffffff"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textview_template"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:gravity="center_vertical"
+                android:background="#FFFFFF"
+                android:lines="1"
+                android:maxLines="1"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeMaxTextSize="32sp"
+                app:autoSizeStepGranularity="2sp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textview_template2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text=""
+                android:gravity="center_vertical"
+                android:background="#FFFFFF"
+                android:layout_marginLeft="1dp"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeMaxTextSize="32sp"
+                app:autoSizeStepGranularity="2sp"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+
+

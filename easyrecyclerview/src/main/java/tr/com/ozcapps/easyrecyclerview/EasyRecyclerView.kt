@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import tr.com.ozcapps.easyrecyclerview.R.styleable
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tr.com.ozcapps.easyrecyclerview.annotations.ViewData
 import tr.com.ozcapps.easyrecyclerview.utils.ViewUtils
@@ -26,7 +26,7 @@ class EasyRecyclerView : RecyclerView {
     var onItemClick: ((Any, Int, View?) -> Unit)? = null
 
     companion object {
-        @BindingAdapter("itemList")
+        @BindingAdapter("item_list")
         @JvmStatic fun setItemList(recyclerView: EasyRecyclerView, items: List<Any>) {
             recyclerView.setItemList(items)
         }
@@ -41,12 +41,12 @@ class EasyRecyclerView : RecyclerView {
             this.ctx = ctx
             val a = ctx.obtainStyledAttributes(attrs, styleable.EasyRecyclerView, defStyle, 0)
 
-            rowLayoutResourceId = a.getResourceId(styleable.EasyRecyclerView_row_layout, 0);
+            rowLayoutResourceId = a.getResourceId(styleable.EasyRecyclerView_row_layout, 0)
             if(rowLayoutResourceId == 0) {
                 throw Resources.NotFoundException("Row Layout Not Found! Set row_layout of RecyclerView!")
             }
             layoutManager = LinearLayoutManager(ctx)
-            a.recycle();
+            a.recycle()
         }
     }
 
@@ -70,11 +70,11 @@ class EasyRecyclerView : RecyclerView {
 
         private val inflater: LayoutInflater = LayoutInflater.from(ctx)
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): XAdapter.XViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): XViewHolder {
             return XViewHolder(inflater.inflate(rowLayoutResourceId, parent, false))
         }
 
-        override fun onBindViewHolder(holder: XAdapter.XViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: XViewHolder, position: Int) {
             holder.bindItems(itemList[position])
         }
 
@@ -106,7 +106,7 @@ class EasyRecyclerView : RecyclerView {
                         val value = (prop as KProperty1<Any, *>).get(item) as String
                         when (val view = itemView.findViewById<View>(resources.getIdentifier(viewData.viewId, "id", ctx.packageName))) {
                             is TextView -> view.text = value
-                            is ImageView -> Glide.with(ctx).load(value).into(view);
+                            is ImageView -> Glide.with(ctx).load(value).into(view)
                         }
                     }
                 }
