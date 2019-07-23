@@ -1,5 +1,4 @@
 # EasyRecyclerView
-[![](https://jitpack.io/v/harunozceyhan/EasyRecyclerView.svg)](https://jitpack.io/#harunozceyhan/EasyRecyclerView)
 EasyRecyclerView is a Kotlin Android library which makes easier to create RecyclerView.
 
 # Installation
@@ -21,9 +20,9 @@ dependencies {
 ```
 
 ## Usage
-Place EasyRecyclerView in your layout.xml like this:
+##### Place EasyRecyclerView in your layout.xml like this:
 
-activity_main.xml
+*activity_main.xml*
 ```XML
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -48,9 +47,9 @@ activity_main.xml
 
 + **app:row_layout:** Set resource layout for RecyclerView's Adapter Holder View. 
 
-Create layout xml for Holder View.
+###### Create layout xml for Holder View.
 
-recycler_view_row_layout.xml
+*recycler_view_row_layout.xml*
 ```XML
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -109,7 +108,7 @@ recycler_view_row_layout.xml
 
 + For now, **TextView** and **ImageView** is supported to set data. For ImageView, the image will be fetched automatically with the given url.
 
-Create a Model Class to set data for each row. 
+###### Create a Model Class to set data for each row. 
 ```Kotlin
 package tr.com.ozcapps.easyrecyclerviewexample.models
 
@@ -121,11 +120,10 @@ data class TestRecyclerViewModel (@ViewData("textview_template") var text1: Stri
 + **@ViewData("view_id")** Annotation is used to set class property value to views. Example; value of *text1* will be set to *AppCompatTextView* with id **textview_template**.
 + **@ViewData("imageview_template")** enables to fetch image from given url and set image to *ImageView* with given **id(imageview_template)**.
 
-Create a list and set the list to your recyclerview in activity.
+###### Create a list and set the list to your recyclerview in activity.
 
 ```Kotlin
- // Any type of List
- private var list : MutableList<TestRecyclerViewModel> = mutableListOf()
+ private var list : MutableList<TestRecyclerViewModel> = mutableListOf()    // Any type of List
 
  override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -148,4 +146,3 @@ Create a list and set the list to your recyclerview in activity.
     }
 
 ```
-
