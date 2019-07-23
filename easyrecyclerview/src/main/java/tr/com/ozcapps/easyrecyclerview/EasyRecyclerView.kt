@@ -61,20 +61,20 @@ class EasyRecyclerView : RecyclerView {
 
     private fun initUpdateAdapter() {
         if (adapter == null)
-            adapter = XAdapter(ctx, itemList, rowLayoutResourceId)
+            adapter = EasyAdapter(ctx, itemList, rowLayoutResourceId)
         else
             refreshData()
     }
 
-    inner class XAdapter(ctx: Context, private val itemList: List<Any>, private val rowLayoutResourceId: Int) : RecyclerView.Adapter<XAdapter.XViewHolder>() {
+    inner class EasyAdapter(ctx: Context, private val itemList: List<Any>, private val rowLayoutResourceId: Int) : RecyclerView.Adapter<EasyAdapter.EasyViewHolder>() {
 
         private val inflater: LayoutInflater = LayoutInflater.from(ctx)
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): XViewHolder {
-            return XViewHolder(inflater.inflate(rowLayoutResourceId, parent, false))
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EasyViewHolder {
+            return EasyViewHolder(inflater.inflate(rowLayoutResourceId, parent, false))
         }
 
-        override fun onBindViewHolder(holder: XViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: EasyViewHolder, position: Int) {
             holder.bindItems(itemList[position])
         }
 
@@ -82,7 +82,7 @@ class EasyRecyclerView : RecyclerView {
             return itemList.size
         }
 
-        inner class XViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        inner class EasyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             private var listenerAttachedViewList: ArrayList<View> = ViewUtils.getOnClickListenerViews((itemView as ViewGroup))
 
