@@ -1,4 +1,4 @@
-package tr.com.ozcapps.easyrecyclerview
+package tr.com.harunozceyhan.easyrecyclerview
 
 import android.content.Context
 import android.content.res.Resources
@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import tr.com.ozcapps.easyrecyclerview.R.styleable
+import tr.com.harunozceyhan.easyrecyclerview.R.styleable
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import tr.com.ozcapps.easyrecyclerview.annotations.ViewData
-import tr.com.ozcapps.easyrecyclerview.utils.ViewUtils
+import tr.com.harunozceyhan.easyrecyclerview.annotations.ViewData
+import tr.com.harunozceyhan.easyrecyclerview.utils.ViewUtils
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.findAnnotation
 

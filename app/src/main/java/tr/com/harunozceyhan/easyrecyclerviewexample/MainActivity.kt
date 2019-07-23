@@ -1,10 +1,10 @@
-package tr.com.ozcapps.easyrecyclerviewexample
+package tr.com.harunozceyhan.easyrecyclerviewexample
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import tr.com.ozcapps.easyrecyclerviewexample.models.TestRecyclerViewModel
+import tr.com.harunozceyhan.easyrecyclerviewexample.models.TestRecyclerViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300", ""))
         list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300", ""))
         list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300", ""))
+
+
         easy_recyclerview.setItemList(list)
     }
 }

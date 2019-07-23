@@ -1,4 +1,4 @@
-package tr.com.ozcapps.easyrecyclerview.annotations
+package tr.com.harunozceyhan.easyrecyclerview.annotations
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.PROPERTY)

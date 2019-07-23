@@ -1,4 +1,4 @@
-package tr.com.ozcapps.easyrecyclerviewexample
+package tr.com.harunozceyhan.easyrecyclerviewexample
 
 import org.junit.Test
 

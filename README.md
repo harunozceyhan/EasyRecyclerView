@@ -22,10 +22,11 @@ dependencies {
 ```
 
 # Usage
-#### Place EasyRecyclerView in your layout.xml like this:
+Place `EasyRecyclerView` in your `layout.xml` like this:
 
-*activity_main.xml*
+
 ```XML
+<!-- activity_main.xml -->
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -36,22 +37,21 @@ dependencies {
         
         ...
     
-        <tr.com.ozcapps.easyrecyclerview.EasyRecyclerView
+        <tr.com.harunozceyhan.easyrecyclerview.EasyRecyclerView
                 android:id="@+id/easy_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:row_layout="@layout/recycler_view_row_layout" >
-        </tr.com.ozcapps.easyrecyclerview.EasyRecyclerView>
+        </tr.com.harunozceyhan.easyrecyclerview.EasyRecyclerView>
 
 </RelativeLayout>
 ```
 
 + **app:row_layout:** Set resource layout for RecyclerView's Adapter Holder View. 
 
-#### Create layout xml for Holder View.
-
-*recycler_view_row_layout.xml*
+Create layout xml for `Holder View`.
 ```XML
+<!-- recycler_view_row_layout.xml -->
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -110,12 +110,12 @@ dependencies {
 
 + For now, **TextView** and **ImageView** is supported to set data. For ImageView, the image will be fetched automatically with the given url.
 
-#### Create a Model Class to set data for each row. 
+Create a `Model Class` to set data for each row. 
 
 ```Kotlin
-package tr.com.ozcapps.easyrecyclerviewexample.models
+package tr.com.harunozceyhan.easyrecyclerviewexample.models
 
-import tr.com.ozcapps.easyrecyclerview.annotations.ViewData
+import tr.com.harunozceyhan.easyrecyclerview.annotations.ViewData
 
 data class TestRecyclerViewModel (@ViewData("textview_template") var text1: String, @ViewData("textview_template2") var text2: String, @ViewData("imageview_template") var imageUrl: String) {
 }
@@ -123,7 +123,7 @@ data class TestRecyclerViewModel (@ViewData("textview_template") var text1: Stri
 + **@ViewData("view_id")** Annotation is used to set class property value to views. Example; value of *text1* will be set to *AppCompatTextView* with id **textview_template**.
 + **@ViewData("imageview_template")** enables to fetch image from given url and set image to *ImageView* with given **id(imageview_template)**.
 
-#### Create a list and set the list to your recyclerview in activity.
+Create a `list` and set the list to your `recyclerview` in activity.
 
 ```Kotlin
  private var list : MutableList<TestRecyclerViewModel> = mutableListOf()    // Any type of List
@@ -133,12 +133,9 @@ data class TestRecyclerViewModel (@ViewData("textview_template") var text1: Stri
         setContentView(R.layout.activity_main)
 
         // Create dump data. 
-        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
-        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
-        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
-        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
-        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
-        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
+        for (i in 0 until 10){
+            list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300", ""))
+        }
         
         val easyRecyclerView : EasyRecyclerView = findViewById(R.id.easy_recyclerview)
         easyRecyclerView.setItemList(list)
@@ -149,7 +146,7 @@ data class TestRecyclerViewModel (@ViewData("textview_template") var text1: Stri
     }
 ```
 
-#### Set listener to EasyRecyclerView
+Set `listener` to `EasyRecyclerView`
 
 ```Kotlin
     easyRecyclerView.onItemClick = { item, position, view ->
@@ -167,14 +164,14 @@ data class TestRecyclerViewModel (@ViewData("textview_template") var text1: Stri
 + **view:** When **android:onClick="onItemClick"** property is set to a view in row layout, view object will be set to this *view* parameter after clicking it. It will be *null* if **onClick** property is not set.
 ---
 ## Set data to EasyRecyclerView using Data Binding
-#### Create EasyRecyclerView and set *app:item_list* property.
+Create `EasyRecyclerView` and set `app:item_list` property.
 ```XML
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="vm" type="tr.com.ozcapps.easyrecyclerviewexample.model.MainActivityViewModel"/>
+        <variable name="vm" type="tr.com.harunozceyhan.easyrecyclerviewexample.model.MainActivityViewModel"/>
     </data>
     
     <RelativeLayout
@@ -182,26 +179,26 @@ data class TestRecyclerViewModel (@ViewData("textview_template") var text1: Stri
         android:layout_height="match_parent"
         tools:context=".MainActivity">
         
-        <tr.com.ozcapps.easyrecyclerview.EasyRecyclerView
+        <tr.com.harunozceyhan.easyrecyclerview.EasyRecyclerView
                 android:id="@+id/easy_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:row_layout="@layout/recycler_view_row_layout"
                 app:item_list="@{vm.items}">
-        </tr.com.ozcapps.easyrecyclerview.EasyRecyclerView>
+        </tr.com.harunozceyhan.easyrecyclerview.EasyRecyclerView>
 
     </RelativeLayout>
-</layout
+</layout>
 ```
 + **app:item_list:** Set item list to recyclerview. This will set the item list to adapter automatically.
 
-#### Create Activity View Model class to set binding object to vm.
+Create Activity `View Model` class to set binding object to `vm`.
 ```Kotlin
-package tr.com.ozcapps.easyrecyclerviewexample.model
+package tr.com.harunozceyhan.easyrecyclerviewexample.model
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import tr.com.ozcapps.easyrecyclerviewexample.BR
+import tr.com.harunozceyhan.easyrecyclerviewexample.BR
 
 data class MainActivityViewModel (private var _items: MutableList<TestRecyclerViewModel>) : BaseObservable() {
     var items: MutableList<TestRecyclerViewModel>
@@ -213,7 +210,7 @@ data class MainActivityViewModel (private var _items: MutableList<TestRecyclerVi
 }
 ```
 
-#### Set item list of mainActivityViewModel object.
+Set item list of `mainActivityViewModel` object.
 ```Kotlin
 private lateinit var binding: ActivityMainBinding
 private var list : MutableList<TestRecyclerViewModel> = mutableListOf()
@@ -224,12 +221,9 @@ override fun onCreate(savedInstanceState: Bundle?) {
         binding.setVariable(BR.vm, MainActivityViewModel(list))
         
         // Create dump data. 
-        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
-        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
-        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
-        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
-        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
-        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
+        for (i in 0 until 10){
+            list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300", ""))
+        }
         
         // Refresh data
         binding.vm?.items = list // or binding.vm?.notifyPropertyChanged(BR.items)
