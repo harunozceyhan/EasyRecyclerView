@@ -1,4 +1,6 @@
 # EasyRecyclerView
+[![](https://jitpack.io/v/harunozceyhan/EasyRecyclerView.svg)](https://jitpack.io/#harunozceyhan/EasyRecyclerView)
+
 EasyRecyclerView is a Kotlin Android library which makes easier to create RecyclerView.
 
 # Installation
