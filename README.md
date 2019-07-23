@@ -22,6 +22,8 @@ dependencies {
 
 ## Usage
 Place EasyRecyclerView in your layout.xml like this:
+
+activity_main.xml
 ```XML
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -48,6 +50,7 @@ Place EasyRecyclerView in your layout.xml like this:
 
 Create layout xml for Holder View.
 
+recycler_view_row_layout.xml
 ```XML
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -128,8 +131,8 @@ Create a list and set the list to your recyclerview in activity.
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-         // Create dump data. 
-         list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
+        // Create dump data. 
+        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
         list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
         list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
         list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
@@ -145,3 +148,4 @@ Create a list and set the list to your recyclerview in activity.
     }
 
 ```
+
