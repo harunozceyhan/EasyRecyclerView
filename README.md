@@ -4,7 +4,6 @@
 EasyRecyclerView is a Kotlin Android library which makes easier to create RecyclerView.
 
 # Installation
----
 Add the code below to your **root build.gradle** file **(NOT your module build.gradle file)**.
 ```gradle
 allprojects {
@@ -23,7 +22,6 @@ dependencies {
 ```
 
 # Usage
----
 #### Place EasyRecyclerView in your layout.xml like this:
 
 *activity_main.xml*
@@ -167,8 +165,6 @@ data class TestRecyclerViewModel (@ViewData("textview_template") var text1: Stri
 + **item:** Clicked row data object.
 + **position:** Clicked row index.
 + **view:** When **android:onClick="onItemClick"** property is set to a view in row layout, view object will be set to this *view* parameter after clicking it. It will be *null* if **onClick** property is not set.
-
-# Advanced Usage
 ---
 ## Set data to EasyRecyclerView using Data Binding
 #### Create EasyRecyclerView and set *app:item_list* property.
