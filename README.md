@@ -77,7 +77,6 @@ Create layout xml for Holder View.
                 android:layout_weight="1"
                 android:layout_marginRight="1dp"
                 android:scaleType="fitCenter"
-                android:onClick="onItemClick"
                 android:background="#ffffff"/>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -105,7 +104,9 @@ Create layout xml for Holder View.
 </androidx.cardview.widget.CardView>
 ```
 
-Create a Model Class to set and list data. 
++ For now, **TextView** and **ImageView** is supported to set data. For ImageView, the image will be fetched automatically with the given url.
+
+Create a Model Class to set data for each row. 
 ```Kotlin
 package tr.com.ozcapps.easyrecyclerviewexample.models
 
@@ -115,3 +116,32 @@ data class TestRecyclerViewModel (@ViewData("textview_template") var text1: Stri
 }
 ```
 + **@ViewData("view_id")** Annotation is used to set class property value to views. Example; value of *text1* will be set to *AppCompatTextView* with id **textview_template**.
++ **@ViewData("imageview_template")** enables to fetch image from given url and set image to *ImageView* with given **id(imageview_template)**.
+
+Create a list and set the list to your recyclerview in activity.
+
+```Kotlin
+ // Any type of List
+ private var list : MutableList<TestRecyclerViewModel> = mutableListOf()
+
+ override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+         // Create dump data. 
+         list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
+        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
+        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
+        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
+        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
+        list.add(TestRecyclerViewModel("Text ${(list.size + 1).toString()}", "Text ${(list.size + 2).toString()}", "https://picsum.photos/id/${(list.size + 1).toString()}/200/300"))
+        
+        val easyRecyclerView : EasyRecyclerView = findViewById(R.id.easy_recyclerview)
+        easyRecyclerView.setItemList(list)
+        /* 
+            If you're using kotlin-android-extensions, simply
+            easy_recyclerview.setItemList(list)
+        */
+    }
+
+```
