@@ -108,7 +108,7 @@ Create layout xml for `Holder View`.
 </androidx.cardview.widget.CardView>
 ```
 
-+ For now, **TextView** and **ImageView** is supported to set data. For ImageView, the image will be fetched automatically with the given url.
++ **For now**, `TextView` and `ImageView` is supported to set data. For `ImageView`, the image will be fetched automatically with the given url.
 
 Create a `Model Class` to set data for each row. 
 
@@ -228,4 +228,34 @@ override fun onCreate(savedInstanceState: Bundle?) {
         // Refresh data
         binding.vm?.items = list // or binding.vm?.notifyPropertyChanged(BR.items)
 }
+```
+
+# Contributing
+The best way to submit a patch is to send us a pull request.
+If you want to add new functionality, please file a new proposal issue first to make sure that it is not in progress already. 
+If you have any questions, feel free to create a question issue.
+
+# License
+```
+MIT License
+
+Copyright (c) 2019 harunozceyhan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
