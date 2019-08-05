@@ -11,19 +11,19 @@ import java.util.*
 class ViewUtils {
     companion object {
         /*
-            Returns a list of views that has android:onClick property.
+            Returns a list of views or Ids that has android:onClick property.
         */
-        @JvmStatic fun getOnClickListenerViews(parent: ViewGroup) : ArrayList<View> {
-            var viewList: ArrayList<View> = ArrayList()
+        @JvmStatic fun getOnClickListenerViews(parent: ViewGroup, returnId: Boolean) : ArrayList<Any> {
+            var viewList: ArrayList<Any> = ArrayList()
             for (i in 0 until parent.childCount) {
                 val child = parent.getChildAt(i)
                 if (child is ViewGroup) {
-                    getOnClickListenerViews(child).forEach {
+                    getOnClickListenerViews(child, returnId).forEach {
                         viewList.add(it)
                     }
                 } else {
                     if (child != null && child.hasOnClickListeners()) {
-                        viewList.add(child)
+                        viewList.add(if(returnId) child.id else child)
                     }
                 }
             }

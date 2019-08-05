@@ -44,6 +44,7 @@
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeMaxTextSize="32sp"
+                android:onClick="onItemClick"
                 app:autoSizeStepGranularity="2sp"/>
 
         <androidx.appcompat.widget.AppCompatTextView

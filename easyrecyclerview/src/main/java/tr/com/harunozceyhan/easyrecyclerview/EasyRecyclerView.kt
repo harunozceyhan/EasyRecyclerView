@@ -85,6 +85,7 @@ class EasyRecyclerView : RecyclerView {
     inner class EasyAdapter(ctx: Context, private val itemList: List<Any>, private val rowLayoutResourceId: Int) : RecyclerView.Adapter<EasyAdapter.EasyViewHolder>() {
 
         private val inflater: LayoutInflater = LayoutInflater.from(ctx)
+        private var listenerAttachedViewIdList: ArrayList<Any> = ViewUtils.getOnClickListenerViews((inflater.inflate(rowLayoutResourceId, null, false) as ViewGroup), true)
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EasyViewHolder {
             return EasyViewHolder(inflater.inflate(rowLayoutResourceId, parent, false))
@@ -99,9 +100,6 @@ class EasyRecyclerView : RecyclerView {
         }
 
         inner class EasyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-            private var listenerAttachedViewList: ArrayList<View> = ViewUtils.getOnClickListenerViews((itemView as ViewGroup))
-
             /*
             * Set listeners to RecyclerView and other views that have onClick property.
             * */
@@ -110,8 +108,8 @@ class EasyRecyclerView : RecyclerView {
                     onItemClick?.invoke(itemList[adapterPosition], adapterPosition, null)
                 }
 
-                listenerAttachedViewList.forEach {
-                    it.setOnClickListener { view ->
+                (listenerAttachedViewIdList as ArrayList<Int>).forEach {
+                    itemView.findViewById<View>(it).setOnClickListener { view ->
                         onItemClick?.invoke(itemList[adapterPosition], adapterPosition, view)
                     }
                 }
