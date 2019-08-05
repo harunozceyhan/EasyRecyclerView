@@ -12,8 +12,8 @@ buildscript {
         test_runner_version = '1.0.2'
         espresso_version = '3.0.2'
 
-        libVersionCode = 1
-        libVersionName = "0.1.3"
+        libVersionCode = 2
+        libVersionName = "0.1.3-beta01"
         libMinSdkVersion = 19
         libTargetSdkVersion = 28
         libCompileSdkVersion = 28
