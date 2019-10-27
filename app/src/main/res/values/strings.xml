@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EasyRecyclerViewExample</string>
+    <string name="is_checked">Checked</string>
 </resources>

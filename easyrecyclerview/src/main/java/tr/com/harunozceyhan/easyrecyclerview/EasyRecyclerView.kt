@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.SwitchCompat
 import tr.com.harunozceyhan.easyrecyclerview.R.styleable
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -125,6 +126,7 @@ class EasyRecyclerView : RecyclerView {
                     if(viewData != null) {
                         val value = (prop as KProperty1<Any, *>).get(item) as String
                         when (val view = itemView.findViewById<View>(resources.getIdentifier(viewData.viewId, "id", ctx.packageName))) {
+                            is SwitchCompat -> view.isChecked = (value == "true")
                             is TextView -> view.text = value
                             is ImageView -> Glide.with(ctx).load(value).into(view)
                         }
