@@ -29,6 +29,16 @@ class EasyRecyclerView : RecyclerView {
     private lateinit var ctx: Context
     private var rowLayoutResourceId: Int = 0
     var onItemClick: ((Any, Int, View?) -> Unit)? = null
+    var customBindViewHolder: ((item: Any, itemView: View) -> Unit)? = null
+        set(value) {
+            if(field == null && value != null && ::itemList.isInitialized) {
+                field = value
+                adapter = null
+                initUpdateAdapter()
+            } else {
+                field = value
+            }
+        }
 
     companion object {
         /*
@@ -74,7 +84,7 @@ class EasyRecyclerView : RecyclerView {
     * */
     private fun initUpdateAdapter() {
         if (adapter == null)
-            adapter = EasyAdapter(ctx, itemList, rowLayoutResourceId)
+            adapter = EasyAdapter(ctx, itemList, rowLayoutResourceId, customBindViewHolder != null)
         else
             refreshData()
     }
@@ -83,7 +93,7 @@ class EasyRecyclerView : RecyclerView {
         RecyclerView Adapter class.
         Creates ViewHolder with given layoutResourceId and set data to views from given list.
     */
-    inner class EasyAdapter(ctx: Context, private val itemList: List<Any>, private val rowLayoutResourceId: Int) : RecyclerView.Adapter<EasyAdapter.EasyViewHolder>() {
+    inner class EasyAdapter(ctx: Context, private val itemList: List<Any>, private val rowLayoutResourceId: Int, private val useCustomBindViewHolder : Boolean) : RecyclerView.Adapter<EasyAdapter.EasyViewHolder>() {
 
         private val inflater: LayoutInflater = LayoutInflater.from(ctx)
         private var listenerAttachedViewIdList: ArrayList<Any> = ViewUtils.getOnClickListenerViews((inflater.inflate(rowLayoutResourceId, null, false) as ViewGroup), true)
@@ -93,7 +103,7 @@ class EasyRecyclerView : RecyclerView {
         }
 
         override fun onBindViewHolder(holder: EasyViewHolder, position: Int) {
-            holder.bindItems(itemList[position])
+            holder.bindItems(itemList[position], useCustomBindViewHolder)
         }
 
         override fun getItemCount(): Int {
@@ -120,15 +130,19 @@ class EasyRecyclerView : RecyclerView {
             *   Get annotated object values, set value to views that have Id indicated by ViewData annotation.
             * */
             @Suppress("UNCHECKED_CAST")
-            fun bindItems(item: Any) {
-                item::class.members.forEach { prop ->
-                    val viewData = prop.findAnnotation<ViewData>()
-                    if(viewData != null) {
-                        val value = (prop as KProperty1<Any, *>).get(item) as String
-                        when (val view = itemView.findViewById<View>(resources.getIdentifier(viewData.viewId, "id", ctx.packageName))) {
-                            is SwitchCompat -> view.isChecked = (value == "true")
-                            is TextView -> view.text = value
-                            is ImageView -> Glide.with(ctx).load(value).into(view)
+            fun bindItems(item: Any, useCustomBindViewHolder : Boolean) {
+                if (useCustomBindViewHolder) {
+                    customBindViewHolder?.invoke(item, itemView)
+                } else {
+                    item::class.members.forEach { prop ->
+                        val viewData = prop.findAnnotation<ViewData>()
+                        if(viewData != null) {
+                            val value = (prop as KProperty1<Any, *>).get(item) as String
+                            when (val view = itemView.findViewById<View>(resources.getIdentifier(viewData.viewId, "id", ctx.packageName))) {
+                                is SwitchCompat -> view.isChecked = (value == "true")
+                                is TextView -> view.text = value
+                                is ImageView -> Glide.with(ctx).load(value).into(view)
+                            }
                         }
                     }
                 }

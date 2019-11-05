@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.recycler_view_row_layout.view.*
 import tr.com.harunozceyhan.easyrecyclerviewexample.models.TestRecyclerViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +14,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        easy_recyclerview.customBindViewHolder = { item, itemView ->
+            itemView.textview_template.text = (item as TestRecyclerViewModel).text1
+        }
 
         easy_recyclerview.onItemClick = { item, position, view ->
             if(view != null) {
@@ -24,7 +29,6 @@ class MainActivity : AppCompatActivity() {
                 addData()
             }
         }
-
         addData()
     }
 
