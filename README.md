@@ -164,6 +164,14 @@ data class TestRecyclerViewModel (@ViewData("textview_template") var text1: Stri
 + **position:** Clicked row index.
 + **view:** When **android:onClick="onItemClick"** property is set to a view in row layout, view object will be set to this *view* parameter after clicking it. It will be *null* if **onClick** property is not set.
 ---
+## Custom BindViewHolder
+```Kotlin
+    easyRecyclerView.customBindViewHolder = { item, itemView ->
+        itemView.textview_template.text = (item as TestRecyclerViewModel).text1
+        itemView.textview_template2.text = (item as TestRecyclerViewModel).text2
+    }
+```
+---
 ## Set data to EasyRecyclerView using Data Binding
 Create `EasyRecyclerView` and set `app:item_list` property.
 ```XML
