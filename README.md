@@ -166,7 +166,7 @@ data class TestRecyclerViewModel (@ViewData("textview_template") var text1: Stri
 ---
 ## Custom BindViewHolder
 
-EasyRecyclerView automatically create view holder. If you want to customize item views, create custom view holder, customize item views and set data to views.
+Custom view holders can be set to EasyRecyclerView to customize item views and set data.
 
 ```Kotlin
     easyRecyclerView.customBindViewHolder = { item, itemView ->
