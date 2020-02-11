@@ -165,6 +165,9 @@ data class TestRecyclerViewModel (@ViewData("textview_template") var text1: Stri
 + **view:** When **android:onClick="onItemClick"** property is set to a view in row layout, view object will be set to this *view* parameter after clicking it. It will be *null* if **onClick** property is not set.
 ---
 ## Custom BindViewHolder
+
+EasyRecyclerView automatically create view holder. If you want to customize item views, create custom view holder, customize item views and set data to views.
+
 ```Kotlin
     easyRecyclerView.customBindViewHolder = { item, itemView ->
         itemView.textview_template.text = (item as TestRecyclerViewModel).text1
