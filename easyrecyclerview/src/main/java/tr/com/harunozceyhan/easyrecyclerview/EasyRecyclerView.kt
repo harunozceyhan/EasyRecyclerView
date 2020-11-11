@@ -2,6 +2,7 @@ package tr.com.harunozceyhan.easyrecyclerview
 
 import android.content.Context
 import android.content.res.Resources
+import android.text.SpannableString
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import tr.com.harunozceyhan.easyrecyclerview.annotations.Spannable
 import tr.com.harunozceyhan.easyrecyclerview.annotations.ViewData
 import tr.com.harunozceyhan.easyrecyclerview.utils.ViewUtils
 import kotlin.reflect.KProperty1
@@ -136,8 +138,9 @@ class EasyRecyclerView : RecyclerView {
                 } else {
                     item::class.members.forEach { prop ->
                         val viewData = prop.findAnnotation<ViewData>()
+                        val spannable = prop.findAnnotation<Spannable>()
                         if(viewData != null) {
-                            val value = (prop as KProperty1<Any, *>).get(item) as CharSequence
+                            val value = if(spannable == null) (prop as KProperty1<Any, *>).get(item) as CharSequence else (prop as KProperty1<Any, *>).get(item) as SpannableString
                             when (val view = itemView.findViewById<View>(resources.getIdentifier(viewData.viewId, "id", ctx.packageName))) {
                                 is SwitchCompat -> view.isChecked = (value.toString() == "true")
                                 is TextView -> view.text = value
