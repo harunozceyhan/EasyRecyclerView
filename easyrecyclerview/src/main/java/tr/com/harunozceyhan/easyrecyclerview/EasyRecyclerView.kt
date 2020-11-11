@@ -137,11 +137,11 @@ class EasyRecyclerView : RecyclerView {
                     item::class.members.forEach { prop ->
                         val viewData = prop.findAnnotation<ViewData>()
                         if(viewData != null) {
-                            val value = (prop as KProperty1<Any, *>).get(item) as String
+                            val value = (prop as KProperty1<Any, *>).get(item) as CharSequence
                             when (val view = itemView.findViewById<View>(resources.getIdentifier(viewData.viewId, "id", ctx.packageName))) {
-                                is SwitchCompat -> view.isChecked = (value == "true")
+                                is SwitchCompat -> view.isChecked = (value.toString() == "true")
                                 is TextView -> view.text = value
-                                is ImageView -> Glide.with(ctx).load(value).into(view)
+                                is ImageView -> Glide.with(ctx).load(value.toString()).into(view)
                             }
                         }
                     }
