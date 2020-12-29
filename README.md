@@ -17,7 +17,7 @@ Add the code below to your **module's `build.gradle`** file:
 
 ```gradle
 dependencies {
-	implementation 'com.github.harunozceyhan:EasyRecyclerView:0.2.0'
+	implementation 'com.github.harunozceyhan:EasyRecyclerView:0.2.2'
 }
 ```
 
